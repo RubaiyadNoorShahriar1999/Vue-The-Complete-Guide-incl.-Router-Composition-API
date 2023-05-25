@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A First App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label for="goal">Goal</label>
+        <!-- we need to connect the enteredValue with this input field -->
+        <input type="text" id="goal" v-model="enteredValue" />
+        <!-- v-on is a vue event listener that checks what kind of event is mentioned after : and will take the name of the method that it should execute after the event is fired -->
+        <button v-on:click="addGoal">Add Goal</button>
+      </div>
+      <ul>
+        <!-- Lastly, we need to use v-for to use a for loop that will iterate through the goals array in the data key of createApp and by accessing/iterating through the values it will insert that value in the {{ goal }} ,every time the button is clicked-->
+        <li v-for="goal in goals">{{ goal }}</li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

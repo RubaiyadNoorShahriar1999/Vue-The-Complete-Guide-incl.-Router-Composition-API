@@ -3,7 +3,9 @@ const app = Vue.createApp({
   data() {
     return {
       // In this data property courseGoal, we can add any property we want as key value pair. It could be a string, number, array, object, etc. Anything in this object can be used in the HTMl section that we are handling using Vue.
-      courseGoal: "Finish the course and learn Vue!",
+      courseGoal1: "Finish the course and learn Vue!",
+      courseGoal2: "Master the course and learn Vue!",
+      courseGoal3: "<h2>Master the course and learn Vue!</h2>",
       vueLink: "https://vuejs.org/",
     };
   },
@@ -13,9 +15,14 @@ const app = Vue.createApp({
     outputGoal() {
       const randomNumber = Math.random();
       if (randomNumber < 0.5) {
-        return "Learn Vue!";
+        // In this context, this refers to the Vue instance that we are working with. So, this.courseGoal1 is the same as app.courseGoal1. It can access all the properties that's in the return object of the data() method and all the methods methods:{}.
+        return this.courseGoal1;
+        // return "Learn Vue!";
+      } else if (randomNumber < 0.9) {
+        return this.courseGoal2;
+        // return "Master Vue!";
       } else {
-        return "Master Vue!";
+        return this.courseGoal3;
       }
     },
   },

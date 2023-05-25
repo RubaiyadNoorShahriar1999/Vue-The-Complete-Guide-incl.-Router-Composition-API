@@ -18,9 +18,33 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button>Add</button>
-      <button>Remove</button>
+      <!-- Here we are using v-on vue attribute to react on a user event and run a certain javascript code that's written in the "", as here it's counter++ -->
+
+      <!-- <button v-on:click="counter++">Add</button>
+      <button v-on:click="counter--">Remove</button> -->
+
+      <!-- Writing logics in HTML is not a good practice. What we need to fo is write logic in js and let Vue handle the callings  -->
+      <button v-on:click="add(5)">Add</button>
+
+      <!-- Also we can point like this and not invoke the functions. but if we have parameters we need to use add() version to pass as an argument to the methods -->
+      <!-- <button v-on:click="add">Add</button> -->
+
+      <button v-on:click="reduce(5)">Remove</button>
       <p>Result: {{ counter }}</p>
+
+      <!-- Here on input event, which is by default accessible in Vanilla JS, we can point the function that should be executed while an input event in the input field occurs. We don't need any parameter to be passed, browser will provide the information of this event (target) by parameter which will include the value of the target-->
+      <input
+        type="text"
+        placeholder="without parameter"
+        v-on:input="setValue1"
+      />
+      <!-- If we need to pass an argument, then Vue has a reserved keyword "$event" by which it will send the target event to the function even if we have a default parameter -->
+      <input
+        type="text"
+        placeholder="with parameter"
+        v-on:input="setValue2($event, 'Shahriar')"
+      />
+      <p>Your name: {{ name }}</p>
     </section>
   </body>
 </html>

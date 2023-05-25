@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <!-- Here we are using v-on vue attribute to react on a user event and run a certain javascript code that's written in the "", as here it's counter++ -->
+
+      <!-- <button v-on:click="counter++">Add</button>
+      <button v-on:click="counter--">Remove</button> -->
+
+      <!-- Writing logics in HTML is not a good practice. What we need to fo is write logic in js and let Vue handle the callings  -->
+      <button v-on:click="add(5)">Add</button>
+
+      <!-- Also we can point like this and not invoke the functions. but if we have parameters we need to use add() version to pass as an argument to the methods -->
+      <!-- <button v-on:click="add">Add</button> -->
+
+      <button v-on:click="reduce(5)">Remove</button>
+
+      <!-- Here we can also modify on which particular click will fire this event using event modifiers. -->
+
+      <!-- <button v-on:click.right="reduce(5)">Remove</button> -->
+
+      <!-- Interpolation Syntax -->
+      <p>Result: {{ counter }}</p>
+
+      <!-- by using v-once we will be evaluating the value at first execution of the code. From the second event in the browser it won't change in the frontend -->
+      <p v-once>Result: {{ counter }}</p>
+
+      <!-- Here on input event, which is by default accessible in Vanilla JS, we can point the function that should be executed while an input event in the input field occurs. We don't need any parameter to be passed, browser will provide the information of this event (target) by parameter which will include the value of the target-->
+      <input
+        type="text"
+        placeholder="without parameter"
+        v-on:input="setValue1"
+      />
+      <!-- If we need to pass an argument, then Vue has a reserved keyword "$event" by which it will send the target event to the function even if we have a default parameter -->
+
+      <input
+        type="text"
+        placeholder="with parameter"
+        v-on:input="setValue2($event, 'Shahriar')"
+      />
+      <p>Your name: {{ name }}</p>
+
+      <!-- This will be fired after the user pressed Enter key in the keyboard. We can have multiple v-{event} event listeners in the same attribute -->
+
+      <input
+        type="text"
+        placeholder="KB Event on Enter"
+        v-on:input="setValue1"
+        v-on:keyup.enter="confirmInput"
+      />
+      <p>Your Confirmed name: {{ confirmedName }}</p>
+
+      <hr />
+
+      <!-- v-bind:value="name" will bind the name variable and dynamically change it to empty string after calling resetInput on onclick event of the button  -->
+      <input
+        type="text"
+        placeholder="for reset"
+        v-bind:value="name"
+        v-on:input="setValue1"
+      />
+      <p>Your Name: {{ name }}</p>
+      <!-- Reset Button Design -->
+      <button v-on:click="resetInput" style="margin-bottom: 10px">Reset</button>
+
+      <!-- we are using v-model directive here which is a combination of v-bind:value and v-on:input. This is called two way binding -->
+      <input type="text" placeholder="for reset" v-model="name" />
+      <p>Your Name: {{ name }}</p>
+      <!-- Reset Button Design -->
+      <button v-on:click="resetInput" style="margin-bottom: 10px">Reset</button>
+
+      <!-- Here we were facing a problem that if we click the submit button it will make a request and reload the page. All data will be lost. So we used event modifier v-on:submit.prevent to modify the actions of onsubmit event. Here .prevent does the same work as event.preventDefault() of VanillaJS. It's the Vue version of preventDefault -->
+      <form v-on:submit.prevent="submitForm">
+        <input
+          type="text"
+          style="border-color: #4fc08d"
+          placeholder="No function"
+        />
+        <hr />
+        <button>Sign Up</button>
+      </form>
+    </section>
+  </body>
+</html>

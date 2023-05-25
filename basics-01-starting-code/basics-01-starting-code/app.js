@@ -2,9 +2,10 @@ const app = Vue.createApp({
   // This name should be exactly data and it should return an object no matter what
   data() {
     return {
-      // In this data property courseGoal, we can add any property we want as key value pair. It could be a string, number, array, object, etc. Anything in this object can be used in the HTMl section that we are handling using Vue.
+      // In this data property courseGoal1, we can add any property we want as key value pair. It could be a string, number, array, object, etc. Anything in this object can be used in the HTMl section that we are handling using Vue.
       courseGoal1: "Finish the course and learn Vue!",
       courseGoal2: "Master the course and learn Vue!",
+      // our output may contain HTML tags. So, we can use v-html directive to output HTML tags. But, we should be careful while using this directive because it can lead to XSS attacks. So, we should only use this directive when we are sure that the HTML is safe.
       courseGoal3: "<h2>Master the course and learn Vue!</h2>",
       vueLink: "https://vuejs.org/",
     };

@@ -38,6 +38,9 @@
       <!-- Interpolation Syntax -->
       <p>Result: {{ counter }}</p>
 
+      <!-- by using v-once we will be evaluating the value at first execution of the code. From the second event in the browser it won't change in the frontend -->
+      <p v-once>Result: {{ counter }}</p>
+
       <!-- Here on input event, which is by default accessible in Vanilla JS, we can point the function that should be executed while an input event in the input field occurs. We don't need any parameter to be passed, browser will provide the information of this event (target) by parameter which will include the value of the target-->
       <input
         type="text"
@@ -62,6 +65,25 @@
         v-on:keyup.enter="confirmInput"
       />
       <p>Your Confirmed name: {{ confirmedName }}</p>
+
+      <hr />
+
+      <!-- v-bind:value="name" will bind the name variable and dynamically change it to empty string after calling resetInput on onclick event of the button  -->
+      <input
+        type="text"
+        placeholder="for reset"
+        v-bind:value="name"
+        v-on:input="setValue1"
+      />
+      <p>Your Name: {{ name }}</p>
+      <!-- Reset Button Design -->
+      <button v-on:click="resetInput" style="margin-bottom: 10px">Reset</button>
+
+      <!-- we are using v-model directive here which is a combination of v-bind:value and v-on:input. This is called two way binding -->
+      <input type="text" placeholder="for reset" v-model="name" />
+      <p>Your Name: {{ name }}</p>
+      <!-- Reset Button Design -->
+      <button v-on:click="resetInput" style="margin-bottom: 10px">Reset</button>
 
       <!-- Here we were facing a problem that if we click the submit button it will make a request and reload the page. All data will be lost. So we used event modifier v-on:submit.prevent to modify the actions of onsubmit event. Here .prevent does the same work as event.preventDefault() of VanillaJS. It's the Vue version of preventDefault -->
       <form v-on:submit.prevent="submitForm">

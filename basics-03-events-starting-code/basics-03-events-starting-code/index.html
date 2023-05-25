@@ -30,6 +30,12 @@
       <!-- <button v-on:click="add">Add</button> -->
 
       <button v-on:click="reduce(5)">Remove</button>
+
+      <!-- Here we can also modify on which particular click will fire this event using event modifiers. -->
+
+      <!-- <button v-on:click.right="reduce(5)">Remove</button> -->
+
+      <!-- Interpolation Syntax -->
       <p>Result: {{ counter }}</p>
 
       <!-- Here on input event, which is by default accessible in Vanilla JS, we can point the function that should be executed while an input event in the input field occurs. We don't need any parameter to be passed, browser will provide the information of this event (target) by parameter which will include the value of the target-->
@@ -39,12 +45,34 @@
         v-on:input="setValue1"
       />
       <!-- If we need to pass an argument, then Vue has a reserved keyword "$event" by which it will send the target event to the function even if we have a default parameter -->
+
       <input
         type="text"
         placeholder="with parameter"
         v-on:input="setValue2($event, 'Shahriar')"
       />
       <p>Your name: {{ name }}</p>
+
+      <!-- This will be fired after the user pressed Enter key in the keyboard. We can have multiple v-{event} event listeners in the same attribute -->
+
+      <input
+        type="text"
+        placeholder="KB Event on Enter"
+        v-on:input="setValue1"
+        v-on:keyup.enter="confirmInput"
+      />
+      <p>Your Confirmed name: {{ confirmedName }}</p>
+
+      <!-- Here we were facing a problem that if we click the submit button it will make a request and reload the page. All data will be lost. So we used event modifier v-on:submit.prevent to modify the actions of onsubmit event. Here .prevent does the same work as event.preventDefault() of VanillaJS. It's the Vue version of preventDefault -->
+      <form v-on:submit.prevent="submitForm">
+        <input
+          type="text"
+          style="border-color: #4fc08d"
+          placeholder="No function"
+        />
+        <hr />
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>

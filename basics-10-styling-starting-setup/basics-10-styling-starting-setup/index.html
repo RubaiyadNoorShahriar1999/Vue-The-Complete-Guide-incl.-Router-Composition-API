@@ -31,7 +31,14 @@
         :class="{active: boxASelected}" -->
 
       <!-- We can also use computed properties to bind with the classes. -->
-      <div class="demo" :class="boxAClasses" @click="boxSelected('A')"></div>
+
+      <!-- class="demo" :class="boxBClasses" -->
+
+      <!-- We can also use the array syntax to bind the classes. -->
+      <div
+        :class="['demo', {active: boxASelected}]"
+        @click="boxSelected('A')"
+      ></div>
       <div class="demo" :class="boxBClasses" @click="boxSelected('B')"></div>
       <div class="demo" :class="boxCClasses" @click="boxSelected('C')"></div>
     </section>

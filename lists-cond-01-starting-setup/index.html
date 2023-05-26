@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <!-- here this v-model is taking the input stroke and the value entered by it using. -->
+      <input type="text" v-model="enteredValue" />
+      <button @click="addGoal">Add Goal</button>
+      <!-- using v-if directive we can use the if conditional statement here. If the condition implemented on a data property, in double coat section of v-if is true ,then that portion will be implemented. we have other conditional rendering directives like v-else , v-else-if, v-show  -->
+      <p v-if="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <ul v-else>
+        <!-- Key is needed for the index to bind with it. On click it will remove the array element and update the index  -->
+        <li
+          v-for="(goal,index) in goals"
+          @click="removeGoal(goal)"
+          :key="index"
+        >
+          {{ goal }} - {{ index }}
+        </li>
+      </ul>
+      <!-- <ul>
+        <li v-for="(value,key) in {Name: 'Rubaiyad', Age: '23'}">
+          {{ key }}: {{ value }}
+        </li>
+      </ul> -->
+    </section>
+  </body>
+</html>

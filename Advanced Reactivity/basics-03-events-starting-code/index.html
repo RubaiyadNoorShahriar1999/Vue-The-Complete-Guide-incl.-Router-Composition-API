@@ -19,9 +19,9 @@
     <section id="events">
       <h2>Events in Action</h2>
 
-      <button v-on:click="add(5)">Add</button>
+      <button @click="add(5)">Add</button>
 
-      <button v-on:click="reduce(5)">Remove</button>
+      <button @click="reduce(5)">Remove</button>
 
       <p>Result: {{ counter }}</p>
 
@@ -50,7 +50,7 @@
         "
       />
       <!-- Reset Button Design -->
-      <button v-on:click="resetInput" style="margin: 10px auto">Reset</button>
+      <button @click="resetInput" style="margin: 10px auto">Reset</button>
       <!-- this fullName is the computed method -->
       <p>Your Name: {{ fullName }}</p>
     </section>
